@@ -45,21 +45,38 @@ public class Fighter {
 
 
 	public void setCurrentMaxHP(int hp) {
-		hitpoints = hp;
+		hitPoints = hp;
 		currentMaxHP = hp;
 	}
 
 	
 	public void dumpPlayer(){
 		log.log("Name:\t"+ name);
-		log.log("HP:\t" + hitpoints+ "/" + currentMaxHP);
+		log.log("HP:\t" + hitPoints+ "/" + currentMaxHP);
 
-        log.log("Attackrating:\t" + attacRating);
+        log.log("Attackrating:\t" + attackRating);
         log.log("DefenseRating:\t" + defenseRating);
         log.log("Weaponrating:\t" + weaponRating);
         log.log("Evaderating:\t" + evadeRating);
 
 		log.log("Thread\t" + threat);
+	}
+
+
+	public boolean isAlive() {
+		return hitPoints > 0;
+	}
+
+
+	public void tick(int tick) {
+		//do updates on effecs lying on player
+		
+	}
+
+
+	public boolean canDoAction() {
+		//check if some action is running taking more than 1 tick and locks the actions
+		return true;
 	}
 	
 }

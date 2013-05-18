@@ -17,4 +17,9 @@ public class Team {
 		fighters.add(p);
 	}
 
+	public List<Fighter> getFighters() {
+		//should be immutable!!
+		return fighters;
+	}
+	
 }
