@@ -1,8 +1,13 @@
 package net.projektfriedhof.sfe;
 
+import net.projektfriedhof.sfe.ki.FighterStats;
+import net.projektfriedhof.sfe.ki.PublicRoundKB;
+import net.projektfriedhof.sfe.ki.RoundKB;
 import net.projektfriedhof.sfe.output.FightLog;
+import net.projektfriedhof.sfe.skill.TestAttackSkill;
+import net.projektfriedhof.sfe.skill.Skill;
 
-public class Fighter {
+public class Fighter implements FighterStats {
 
     private FightLog log = FightLog.createLogger("Fighter");
     private String name = "unknown";
@@ -44,6 +49,11 @@ public class Fighter {
     private Weapon secondaryWeapon;
 
 
+	public Fighter(String name) {
+		this.name = name;
+	}
+
+
 	public void setCurrentMaxHP(int hp) {
 		hitPoints = hp;
 		currentMaxHP = hp;
@@ -78,5 +88,86 @@ public class Fighter {
 		//check if some action is running taking more than 1 tick and locks the actions
 		return true;
 	}
+
+
+	public Action getAction() {
+		//decide what todo by interpreting the KI made by players
+		return new Action();
+	}
+
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+
+	@Override
+	public int maxHP() {
+		return currentMaxHP;
+	}
+
+
+	@Override
+	public int currentHP() {
+		return hitPoints;
+	}
+
+
+	public FighterStats getOpponent(PublicRoundKB kb) {
+		for(FighterStats f :kb.getFighters()){
+			if(f.isAlive() && !f.getName().equals(name)){
+				return f;
+			}
+		}
+		return null;
+	}
+
+
+	public Skill getUsedSkill(RoundKB kb) {
+		//decide which skill to use form the KI configuration for the Payer
+		return new TestAttackSkill();
+	}
+
+
+	
+	public boolean canEvadeAttack(Fighter attacker) {
+		//do a evade check
+		return Dice.roll(100) <=5;
+	}
+
+
+	public boolean isStreifTreffer(Fighter fighter) {
+		return Dice.roll(100) <=5;
+	}
+
+
+	public boolean isCriticalHit(Fighter opponent) {
+		return Dice.roll(100) <=5;
+	}
+
+
+	public boolean isBlock(Fighter fighter) {
+		return Dice.roll(100) <=5;
+	}
+
+
+	public boolean isPenetrating(Fighter opponent) {
+		return Dice.roll(100) <=5;
+	}
+
+
+	public int getPrimaryBaseDamage() {
+		// TODO Auto-generated method stub
+		return (int) attackRating/10;
+	}
+
+
+	public void applyDamage(int damage) {
+		log.log(damage +"");
+		hitPoints -= damage;
+	}
+
+
 	
 }

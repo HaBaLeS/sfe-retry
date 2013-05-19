@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import net.projektfriedhof.sfe.ki.RoundKB;
+import net.projektfriedhof.sfe.output.FightLog;
+import net.projektfriedhof.sfe.skill.Skill;
+
 public class Arena {
 
+	private FightLog log = FightLog.createLogger("ARENA");
 	int tick = 0;
-	
     List<Team> teams = new ArrayList<>();
-
+    RoundKB kb;
+    
+    
 	public void add(Team team1) {
 		teams.add(team1);
 	}
@@ -24,15 +30,18 @@ public class Arena {
 	}
 
 	public boolean isFightOver() {
-		// TODO Auto-generated method stub
-		return true;
+		return orderFighters().size() <= 1;
 	}
 
 	public void tick() {
         //order fighters
 		List<Fighter> fightersForTick = orderFighters();
         tick++;
-
+        log.log("Begin of round " + tick);
+        
+        kb = new RoundKB(tick);
+        kb.setFighters(fightersForTick);
+        
         //for fighters in ordered List
         for(Fighter fighter : fightersForTick){
         
@@ -42,16 +51,18 @@ public class Arena {
             //if( fighter.canDoAction)
         	if(fighter.canDoAction()){
         	
-                //action = fighter.getAction  //user OnTime, Heal, Attack, .....
+               Action action = fighter.getAction(); //user OnTime, Heal, Attack, in Deckung gehen etc
 
                 //switch(action.type)
-
-                    //fight -> processFight(fighter, tick)
-
-                    //useXXXX -> processXXX
-
-                    //default -> fallAssleep()
-
+               switch (action.getType()) {
+					case attack:
+						processFight(fighter);
+						break;
+		
+					default:
+						throw new RuntimeException("Implement the other tpyed to advance");
+               }
+                    
         	}
             //end if
 
@@ -80,13 +91,10 @@ public class Arena {
 		return fightersForRound;
 	}
 
-	public void processFight(Fighter fighter, int tick){
-
-        //Fighter opponent = fighter.getOpponent(enviroment);
-
-        //Skill skill = fighter.getUsedSkill();
-
-        //skill.execute(fighter,opponent,enviroment);
+	public void processFight(Fighter fighter){
+        Fighter opponent = (Fighter) fighter.getOpponent(kb);
+        Skill skill = fighter.getUsedSkill(kb);
+        skill.execute(fighter,opponent,kb);
 
     }
 	

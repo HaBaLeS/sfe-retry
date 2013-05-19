@@ -20,9 +20,9 @@ public class EntityFactory {
 	}
 
 	private Fighter createRandomFighter(int level) {
-		Fighter f = new Fighter();
+		Fighter f = new Fighter("Name-" + Math.random());
 		int hp = Dice.roll(level,6,level);
-		f.setCurrentMaxHP(hp);
+		f.setCurrentMaxHP(hp*10);
 		return f;
 	}
 

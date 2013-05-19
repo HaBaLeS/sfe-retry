@@ -19,13 +19,13 @@ public class Dice {
 	
 	public static int roll(int d){
 		int r = rand.nextInt(d);
-		dlog.log("D"+d +" rolled " + r);
+		//dlog.log("D"+d +" rolled " + r);
 		return r;
 	}
 	
 	public static int roll(int d , int plus){
 		int r = rand.nextInt(d)+plus;
-		dlog.log("D"+d+"+"+plus +" rolled " + r);
+		//dlog.log("D"+d+"+"+plus +" rolled " + r);
 		return r;
 	}
 
@@ -35,7 +35,7 @@ public class Dice {
 			r+=roll(d);
 		}
 		r+=plus;
-		dlog.log(x+"D"+d+"+"+plus +" rolled " + r);
+		//dlog.log(x+"D"+d+"+"+plus +" rolled " + r);
 		return r;
 	}
 	

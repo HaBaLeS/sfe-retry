@@ -30,6 +30,8 @@ public class FightLog {
 
 	public void log(String msg){
 		log(scope,msg);
+		System.out.println("[" + scope + "]" + "\t\t" + msg);
+		
 	}
 	
 
