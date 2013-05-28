@@ -94,8 +94,10 @@ public class Arena {
 	public void processFight(Fighter fighter){
         Fighter opponent = (Fighter) fighter.getOpponent(kb);
         Skill skill = fighter.getUsedSkill(kb);
-        skill.execute(fighter,opponent,kb);
-
+        
+        if(skill != null && opponent != null){
+        	skill.execute(fighter,opponent,kb);
+        }
     }
 	
 	

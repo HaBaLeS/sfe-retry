@@ -1,0 +1,46 @@
+Fight Mechanics
+
+Stats:
+ 
+ HP
+ 
+ 
+ 
+ -Crit -> Mehr schaden
+ -Penetrate -> Weniger Schadensreduktion
+ 
+FLow:
+=====
+ 
+Evaded? (If yes, stop here)
+Glancing? (If yes, skip the Crit roll)
+Critical?
+Blocked? (If yes, skip the Penetration roll)
+Penetrated?
+
+
+Erster Check Evade. Die einzige Changse garkeinen Schaden zu bekommen.
+	-Attacker Stkill % - Opfer Skill % = kleine evade changse. 
+	-Sollte sehr kleine changse sein, da sehr mächtig!!!!
+	-Kann zur Kontrolle genutzt werden. HAt ein MOB ein evade von 30% kann ein Player mit Angriff 5% sehr viele evades auslösen und viel verlieren
+	-Ausweichwert, Angriffswert
+	
+Streiftreffer zugefügter schaden wird weniger
+	-Ein streiftreffer kann nie ein Kritischer werden!
+	-
+		
+	
+	
+Werte:
+	Ausweichwert 0-10000:
+		-Evade 0-30%
+	
+	Angriffswert 0-10000:
+		-Anti Evade 0-20%
+		-Anti Glance 0-40%
+	
+	Schadenswert 0-10000:
+		-SchadenMultiplikatr 100%-200%
+	
+	
+Alle Hauptwerte mit quasi unendlich hohen werten werden über nichtlineare tabellen in die eigentlichen zum kampf genutzten prozentzahlen übersetzt

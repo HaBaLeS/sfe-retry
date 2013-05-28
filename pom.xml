@@ -33,6 +33,10 @@
 			</resource>
 		</resources>
 		<plugins>
+		    <plugin>
+  				<groupId>org.mortbay.jetty</groupId>
+  				<artifactId>jetty-maven-plugin</artifactId>
+			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
@@ -73,6 +77,11 @@
 
 
   <dependencies>
+     <dependency>
+  		<groupId>com.fasterxml.jackson.core</groupId>
+  		<artifactId>jackson-databind</artifactId>
+  		<version>2.2.0</version>
+	</dependency>
 	<dependency>
 		<groupId>junit</groupId>
 		<artifactId>junit</artifactId>

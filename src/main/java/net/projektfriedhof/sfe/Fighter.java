@@ -11,47 +11,39 @@ public class Fighter implements FighterStats {
 
     private FightLog log = FightLog.createLogger("Fighter");
     private String name = "unknown";
-
+    private int id;
+    
 	private int hitPoints;
     private int currentMaxHP;
 
-    private int threat = 0; //bedrohung
-
-
     //BIG4
-    private int attackRating=100;
-    private int defenseRating=100;
-    private int weaponRating=0;
-    private int evadeRating=0;
+//    private int attackRating=100;
+//    private int defenseRating=100;
+//    private int weaponRating=0;
+    private int evadeChangse=5;
 
     //Secondary
-    int blockRating;
+    private int blockChangse=5;
     //int blockActive;
     //int blockPassive;
 
-    int glanceRating;
+    private int glanceChangse=5;
     //int glanceAcrive;
     //int glancePassive;
 
-    int critRating;
+    private int critChangse=5;
     //int critActive;
     //int critPassive;
 
-    int critrRating;
+    private int penChangse=5;
     //int penActive;
     //int penPassive;
 
-    //effective Values
 
 
 
     private Weapon primaryWeapon;
     private Weapon secondaryWeapon;
-
-
-	public Fighter(String name) {
-		this.name = name;
-	}
 
 
 	public void setCurrentMaxHP(int hp) {
@@ -64,12 +56,13 @@ public class Fighter implements FighterStats {
 		log.log("Name:\t"+ name);
 		log.log("HP:\t" + hitPoints+ "/" + currentMaxHP);
 
-        log.log("Attackrating:\t" + attackRating);
-        log.log("DefenseRating:\t" + defenseRating);
-        log.log("Weaponrating:\t" + weaponRating);
-        log.log("Evaderating:\t" + evadeRating);
-
-		log.log("Thread\t" + threat);
+        log.log("Evade Changse:\t" + evadeChangse + "%");
+        log.log("Block Changse:\t" + blockChangse + "%");
+        log.log("Penetrating Changse:\t" + penChangse + "%");
+        log.log("Glance Changse:\t" + glanceChangse + "%");
+        log.log("Critical Changse:\t" + critChangse + "%");
+        
+        
 	}
 
 
@@ -133,33 +126,32 @@ public class Fighter implements FighterStats {
 	
 	public boolean canEvadeAttack(Fighter attacker) {
 		//do a evade check
-		return Dice.roll(100) <=5;
+		return Dice.roll(100) <=evadeChangse;
 	}
 
 
 	public boolean isStreifTreffer(Fighter fighter) {
-		return Dice.roll(100) <=5;
+		return Dice.roll(100) <=glanceChangse;
 	}
 
 
 	public boolean isCriticalHit(Fighter opponent) {
-		return Dice.roll(100) <=5;
+		return Dice.roll(100) <=critChangse;
 	}
 
 
 	public boolean isBlock(Fighter fighter) {
-		return Dice.roll(100) <=5;
+		return Dice.roll(100) <=blockChangse;
 	}
 
 
 	public boolean isPenetrating(Fighter opponent) {
-		return Dice.roll(100) <=5;
+		return Dice.roll(100) <=penChangse;
 	}
 
 
 	public int getPrimaryBaseDamage() {
-		// TODO Auto-generated method stub
-		return (int) attackRating/10;
+		return (int) 10;
 	}
 
 
@@ -169,5 +161,8 @@ public class Fighter implements FighterStats {
 	}
 
 
+	public int getId() {
+		return id;
+	}
 	
 }
