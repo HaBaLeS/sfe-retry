@@ -2,11 +2,11 @@ package net.projektfriedhof.sfe.skill;
 
 import net.projektfriedhof.sfe.Fighter;
 import net.projektfriedhof.sfe.ki.RoundKB;
-import net.projektfriedhof.sfe.output.FightLog;
+import net.projektfriedhof.sfe.output.FightLogEngine;
 
 public class TestAttackSkill extends Skill{
 
-	FightLog log = FightLog.createLogger("TestAttackSkill");
+	FightLogEngine log = FightLogEngine.createLogger("TestAttackSkill");
 	
 	//Uses primary weapon to attack opponent
 	@Override

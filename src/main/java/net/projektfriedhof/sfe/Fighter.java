@@ -6,13 +6,13 @@ import java.util.List;
 import net.projektfriedhof.sfe.ki.FighterStats;
 import net.projektfriedhof.sfe.ki.PublicRoundKB;
 import net.projektfriedhof.sfe.ki.RoundKB;
-import net.projektfriedhof.sfe.output.FightLog;
+import net.projektfriedhof.sfe.output.FightLogEngine;
 import net.projektfriedhof.sfe.skill.TestAttackSkill;
 import net.projektfriedhof.sfe.skill.Skill;
 
 public class Fighter implements FighterStats {
 
-    private FightLog log = FightLog.createLogger("Fighter");
+    private FightLogEngine log = FightLogEngine.createLogger("Fighter");
     private String name = "unknown";
     private int id;
     private int teamId;

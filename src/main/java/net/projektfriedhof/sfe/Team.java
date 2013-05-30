@@ -3,12 +3,12 @@ package net.projektfriedhof.sfe;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.projektfriedhof.sfe.output.FightLog;
+import net.projektfriedhof.sfe.output.FightLogEngine;
 
 public class Team {
 
 	List<Fighter> fighters = new ArrayList<>();
-	FightLog log = FightLog.createLogger("Team");
+	FightLogEngine log = FightLogEngine.createLogger("Team");
 	String name = "unknown";
     int id;
 	

@@ -16,6 +16,8 @@ public interface FighterStats {
 
 	int getTeamId();
 	
+	int getId();
+	
 	//show buffs
 	
 	//show ?????

@@ -1,10 +1,10 @@
 package net.projektfriedhof.sfe;
 
-import net.projektfriedhof.sfe.output.FightLog;
+import net.projektfriedhof.sfe.output.FightLogEngine;
 
 public class ProgramFlowTest {
 
-	FightLog fightLog = FightLog.createLogger("ProgramFlowTest");
+	FightLogEngine fightLog = FightLogEngine.createLogger("ProgramFlowTest");
 	
 	
 	public static void main(String[] args) {

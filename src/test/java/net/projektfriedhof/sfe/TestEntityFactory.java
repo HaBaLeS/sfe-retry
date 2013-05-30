@@ -9,11 +9,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.projektfriedhof.sfe.Dice;
 import net.projektfriedhof.sfe.Fighter;
 import net.projektfriedhof.sfe.Team;
-import net.projektfriedhof.sfe.output.FightLog;
+import net.projektfriedhof.sfe.output.FightLogEngine;
 
 public class TestEntityFactory {
 
-	FightLog fightLog = FightLog.createLogger("EntityFactory");
+	FightLogEngine fightLog = FightLogEngine.createLogger("EntityFactory");
 	
 	
 	public Team createRandomTeam(int level, int members) {

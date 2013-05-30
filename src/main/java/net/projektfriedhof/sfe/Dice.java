@@ -3,12 +3,12 @@ package net.projektfriedhof.sfe;
 import java.security.SecureRandom;
 import java.util.Random;
 
-import net.projektfriedhof.sfe.output.FightLog;
+import net.projektfriedhof.sfe.output.FightLogEngine;
 
 public class Dice {
 
 	static Random rand;
-	static FightLog dlog = FightLog.createLogger("Dice");
+	static FightLogEngine dlog = FightLogEngine.createLogger("Dice");
 	
 	public static void init(byte[] seed){
 		if(rand != null){

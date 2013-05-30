@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Set;
 
 import net.projektfriedhof.sfe.ki.RoundKB;
-import net.projektfriedhof.sfe.output.FightLog;
+import net.projektfriedhof.sfe.output.FightLogEngine;
 import net.projektfriedhof.sfe.skill.Skill;
 
 public class Arena {
 
-	private FightLog log = FightLog.createLogger("ARENA");
+	private FightLogEngine log = FightLogEngine.createLogger("ARENA");
 	int tick = 0;
     List<Team> teams = new ArrayList<>();
     RoundKB kb;
@@ -54,21 +54,23 @@ public class Arena {
 		List<Fighter> fightersForTick = orderFighters();
         tick++;
         log.log("Begin of round " + tick);
+        log.newRound(tick);
         
         kb = new RoundKB(tick);
         kb.setFighters(fightersForTick);
         
         //for fighters in ordered List
         for(Fighter fighter : fightersForTick){
-        
+        	log.startFighterTurn(fighter);
             //fighter.tick()
         	fighter.tick(tick);
         	
             //if( fighter.canDoAction)
         	if(fighter.canDoAction()){
-        	
+        	 
                Action action = fighter.getAction(); //user OnTime, Heal, Attack, in Deckung gehen etc
-
+               log.actionForFighter(action);
+               
                 //switch(action.type)
                switch (action.getType()) {
 					case attack:
@@ -109,7 +111,9 @@ public class Arena {
 
 	public void processFight(Fighter fighter){
         Fighter opponent = (Fighter) fighter.getOpponent(kb);
+        log.setTargetForAction(opponent);
         Skill skill = fighter.getUsedSkill(kb);
+        log.setSkillForAction(skill);
         
         if(skill != null && opponent != null){
         	skill.execute(fighter,opponent,kb);
