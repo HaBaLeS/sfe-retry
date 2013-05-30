@@ -2,7 +2,9 @@ package net.projektfriedhof.sfe;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import net.projektfriedhof.sfe.ki.RoundKB;
 import net.projektfriedhof.sfe.output.FightLog;
@@ -30,7 +32,21 @@ public class Arena {
 	}
 
 	public boolean isFightOver() {
-		return orderFighters().size() <= 1;
+		Set teams = new HashSet<>();
+		for(Fighter f : orderFighters()){
+			teams.add(f.getTeamId());
+		}
+		boolean ended =  teams.size() <= 1;
+		
+		if(ended){
+			log.log("FIGHT IS OVER");
+			log.log("Fighters alive:");
+			for(Fighter f: orderFighters()){
+				f.dumpPlayer();
+			}
+		}
+		
+		return ended;
 	}
 
 	public void tick() {

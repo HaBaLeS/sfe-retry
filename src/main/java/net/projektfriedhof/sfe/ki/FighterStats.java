@@ -13,6 +13,8 @@ public interface FighterStats {
 	int currentHP();
 	
 	boolean isAlive();
+
+	int getTeamId();
 	
 	//show buffs
 	

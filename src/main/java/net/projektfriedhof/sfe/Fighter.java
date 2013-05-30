@@ -1,5 +1,8 @@
 package net.projektfriedhof.sfe;
 
+import java.util.Collections;
+import java.util.List;
+
 import net.projektfriedhof.sfe.ki.FighterStats;
 import net.projektfriedhof.sfe.ki.PublicRoundKB;
 import net.projektfriedhof.sfe.ki.RoundKB;
@@ -12,7 +15,7 @@ public class Fighter implements FighterStats {
     private FightLog log = FightLog.createLogger("Fighter");
     private String name = "unknown";
     private int id;
-    
+    private int teamId;
     
 	private int hitPoints;
     private int currentMaxHP;
@@ -109,8 +112,10 @@ public class Fighter implements FighterStats {
 
 
 	public FighterStats getOpponent(PublicRoundKB kb) {
+		List<? extends FighterStats> fighters = kb.getFighters();
+		Collections.shuffle(fighters);
 		for(FighterStats f :kb.getFighters()){
-			if(f.isAlive() && !f.getName().equals(name)){
+			if(f.isAlive() && !f.getName().equals(name) && f.getTeamId() != teamId){
 				return f;
 			}
 		}
@@ -157,8 +162,11 @@ public class Fighter implements FighterStats {
 
 
 	public void applyDamage(int damage) {
-		log.log(damage +"");
+		log.log(name+ " Takes Damage: "+ damage +"");
 		hitPoints -= damage;
+		if(hitPoints <=0){
+			log.log(name + " geht KO");
+		}
 	}
 
 
@@ -174,5 +182,11 @@ public class Fighter implements FighterStats {
 	}
 	public int getCurrentMaxHP() {
 		return currentMaxHP;
+	}
+	public int getTeamId() {
+		return teamId;
+	}
+	public void setTeamId(int teamId) {
+		this.teamId = teamId;
 	}
 }

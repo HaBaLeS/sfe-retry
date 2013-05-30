@@ -1,6 +1,5 @@
 package net.projektfriedhof.sfe;
 
-import net.projektfriedhof.sfe.input.EntityFactory;
 import net.projektfriedhof.sfe.output.FightLog;
 
 public class ProgramFlowTest {
@@ -17,12 +16,12 @@ public class ProgramFlowTest {
 		fightLog.log("Start Test");
 		
 		//create resources
-		EntityFactory ef = new EntityFactory();
+		TestEntityFactory ef = new TestEntityFactory();
 		Dice.init("testseed".getBytes());
 		
-		Team team1 = ef.createRandomTeam(3,4);
-		Team team2 = ef.createRandomTeam(4,3);
-		Team team3 = ef.createRandomTeam(3,3);
+		Team team1 = ef.loadTeam(0);
+		Team team2 = ef.loadTeam(1);
+		Team team3 = ef.loadTeam(2);
 		
 		//Create and Fill Fight Arena
 		Arena arena = new Arena();
@@ -34,7 +33,7 @@ public class ProgramFlowTest {
 		arena.begin();
 		while(!arena.isFightOver()){
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(20);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

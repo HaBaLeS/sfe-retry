@@ -14,7 +14,8 @@ public class Team {
 	
 	public void add(Fighter p) {
 		log.log("Adding Player to team:"  + name);
-		p.dumpPlayer();
+		p.setTeamId(id)
+;		p.dumpPlayer();
 		fighters.add(p);
 	}
 
@@ -29,5 +30,11 @@ public class Team {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getName() {
+		return name;
 	}
 }
