@@ -13,6 +13,7 @@ public class Fighter implements FighterStats {
     private String name = "unknown";
     private int id;
     
+    
 	private int hitPoints;
     private int currentMaxHP;
 
@@ -165,4 +166,13 @@ public class Fighter implements FighterStats {
 		return id;
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getCurrentMaxHP() {
+		return currentMaxHP;
+	}
 }
