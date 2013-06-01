@@ -1,5 +1,9 @@
 package net.projektfriedhof.sfe;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import net.projektfriedhof.sfe.output.FightLogEngine;
 
 public class ProgramFlowTest {
@@ -44,6 +48,16 @@ public class ProgramFlowTest {
 		fightLog.log("End Test");
 		fightLog.printToConsole();
 		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectWriter wtr = mapper.writerWithDefaultPrettyPrinter();
+		try {
+			String out = wtr.writeValueAsString(fightLog.getFightLogObjects());
+			System.out.println(out);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

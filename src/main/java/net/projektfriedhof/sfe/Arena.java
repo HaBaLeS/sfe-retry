@@ -51,7 +51,7 @@ public class Arena {
 
 	public void tick() {
         //order fighters
-		List<Fighter> fightersForTick = orderFighters();
+		List<Fighter> fightersForTick = new ArrayList<>(orderFighters());
         tick++;
         log.log("Begin of round " + tick);
         log.newRound(tick);
@@ -111,11 +111,12 @@ public class Arena {
 
 	public void processFight(Fighter fighter){
         Fighter opponent = (Fighter) fighter.getOpponent(kb);
-        log.setTargetForAction(opponent);
         Skill skill = fighter.getUsedSkill(kb);
-        log.setSkillForAction(skill);
+       
         
         if(skill != null && opponent != null){
+        	log.setTargetForAction(opponent);
+        	log.setSkillForAction(skill);
         	skill.execute(fighter,opponent,kb);
         }
     }

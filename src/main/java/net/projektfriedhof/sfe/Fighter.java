@@ -189,4 +189,9 @@ public class Fighter implements FighterStats {
 	public void setTeamId(int teamId) {
 		this.teamId = teamId;
 	}
+
+
+	public double getHealthRating() {
+		return getCurrentMaxHP()/100d*hitPoints;
+	}
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import net.projektfriedhof.sfe.Action;
 import net.projektfriedhof.sfe.Fighter;
+import net.projektfriedhof.sfe.ki.FighterStats;
 import net.projektfriedhof.sfe.skill.Skill;
 
 public class FightLogEngine {
@@ -15,8 +16,9 @@ public class FightLogEngine {
 	private static final List<LogMessage> logs = new ArrayList<LogMessage>();
 	
 	private String scope;
-	private RoundLog currentRound;
+	private static RoundLog currentRound;
 	
+	private static final List<RoundLog> roundlogs = new ArrayList<>();
 	
 	private  FightLogEngine(String scope) {
 		this.scope = scope;
@@ -62,25 +64,31 @@ public class FightLogEngine {
 
 	public void newRound(int tick) {
 		currentRound= new RoundLog(tick);
+		roundlogs.add(currentRound);
 	}
 
 	public void startFighterTurn(Fighter fighter) {
 		currentRound.startFighterTurn(fighter);
-		
 	}
 
 	public void actionForFighter(Action action) {
-		// TODO Auto-generated method stub
+		currentRound.currentFighter().setAction(action);
 		
 	}
 
-	public void setTargetForAction(Fighter opponent) {
-		// TODO Auto-generated method stub
-		
+	public void setTargetForAction(FighterStats opponent) {
+		currentRound.currentFighter().setTargetName(opponent.getName());
 	}
 
 	public void setSkillForAction(Skill skill) {
-		// TODO Auto-generated method stub
-		
+		currentRound.currentFighter().setUsedSkill(skill.getSkillId());
+	}
+
+	public Object getFightLogObjects() {
+		return roundlogs;
+	}
+
+	public void logSkillProp(String key, String value) {
+		currentRound.currentFighter().getSkillProps().put(key, value);
 	}
 }

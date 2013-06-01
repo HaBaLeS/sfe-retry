@@ -8,22 +8,26 @@ public class TestAttackSkill extends Skill{
 
 	FightLogEngine log = FightLogEngine.createLogger("TestAttackSkill");
 	
-	//Uses primary weapon to attack opponent
+	
+
 	@Override
-	public void execute(Fighter fighter, Fighter opponent, RoundKB kb) {
+	public void executeInternal(Fighter fighter, Fighter opponent, RoundKB kb) {
 		log.log(fighter.getName()+" attacks " + opponent.getName());
 		boolean hasEvaded = opponent.canEvadeAttack(fighter);
 		double damageMul = 1.0d;
 		if(hasEvaded){
 			log.log(opponent.getName() + " evaded");
+			logSkillProp("evade","evade");
 			return;
 		}
 		
 		if(opponent.isStreifTreffer(fighter)){
 			log.log("Nur ein Streiftreffer");
+			logSkillProp("damageModifier","glance");
 			damageMul -=0.20;
 		} else {
 			if(fighter.isCriticalHit(opponent)){
+				logSkillProp("damageModifier","critical");
 				log.log("Critical Hit");
 				damageMul +=0.20;
 			}
@@ -31,10 +35,12 @@ public class TestAttackSkill extends Skill{
 		
 		if(opponent.isBlock(fighter)){
 			log.log("Block");
+			logSkillProp("damageReduction","block");
 			damageMul-=0.20;
 		} else {
 			if(fighter.isPenetrating(opponent)){
 				log.log("Penetrating");
+				logSkillProp("damageReduction","penetrating");
 				damageMul+=0.20;
 			}
 		}
@@ -43,8 +49,20 @@ public class TestAttackSkill extends Skill{
 		int bd =fighter.getPrimaryBaseDamage();
 		int damage = (int)(bd*damageMul);
 		
+		logSkillProp("damageDone",damage+"");
 		opponent.applyDamage(damage);
 		
+		logSkillProp("health", opponent.getHealthRating() + "");
+		
+		if(!opponent.isAlive()){
+			logSkillProp("targetdead","targetdead");
+		}
+		
+	}
+
+	@Override
+	public String getSkillId() {
+		return "test.skill";
 	}
 
 }
