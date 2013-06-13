@@ -1,15 +1,201 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Bootstrap 101 Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
-    <script src="js/jquery-2.0.1.js"></script>
-    <script src="js/jquery-ui-1.10.3.custom.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  </body>
+<head>
+<title>Bootstrap 101 Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+<style type="text/css">
+.meter-wrap,.meter-value,.meter-text {
+	width: 150px;
+	height: 10px;
+	margin-bottom: 3px;
+}
+
+.meter-wrap {
+	background-color: #808080;
+}
+
+.health {
+	background-color: #ff0000;
+}
+
+.player-container {
+	width: 140px;
+	/*border: 1px solid lightgrey;*/
+	margin: 50px;
+	padding: 30px;
+	float: left;
+	text-align: center;
+	display: inline-block;
+}
+
+
+.player-name{
+	margin-top: 0.5em;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.player-status-effects{
+	
+}
+
+.player-container-small .meter-wrap {
+	width: 80px;
+}
+
+.player-container-small {
+	display: inline-block;
+	margin: 4px;
+}
+
+.player-name-small{
+	margin-top: 0.1em;
+	text-align: center;
+	font-size: 0.75em;
+}
+
+
+</style>
+
+</head>
+<body  style="background-color: #eeeeee">
+
+	
+
+
+
+<div class="row">
+
+	<div class="span3"></div>
+	<div class="span2">
+	
+		<div class="player-container" id="player-1">
+		<div class="player-healthbar">
+			<div class="meter-wrap">
+				<div class="meter-value health" style="width: 88%;">
+					<div class="meter-text"></div>
+				</div>
+			</div>
+		</div>	
+		<div class="player-image">
+			<img src="img/player1.png"  class="img-polaroid">
+		</div>
+		<div class="player-name">
+			Wintermute
+		</div>
+			<div class="player-status-effects">
+				<i class="icon-fire"></i>
+				<i class="icon-resize-small"></i>
+				<i class="icon-star"></i>
+				<i class="icon-heart"></i>
+				<i class="icon-eye-open"></i>
+				<i class="icon-screenshot"></i>		
+			</div>	
+		</div>
+	
+	
+	</div>
+	<div class="span1">
+	</div>
+	<div class="span2">
+	
+		<div class="player-container" id=player-2>
+		<div class="player-healthbar">
+			<div class="meter-wrap">
+				<div class="meter-value health" style="width: 20%;">
+					<div class="meter-text"></div>
+				</div>
+			</div>
+		</div>	
+		<div class="player-image">
+			<img src="img/player2.png" class="img-polaroid">
+		</div>
+		<div class="player-name">
+			Armitage
+		</div>
+			<div class="player-status-effects">
+				<i class="icon-eye-open"></i>
+				<i class="icon-fire"></i>
+				<i class="icon-screenshot"></i>		
+			</div>	
+	</div>
+	
+	</div>
+	<div class="span4">
+	</div>
+</div>
+	
+	
+	
+	<div class="player-container-small" id="player-1">
+		<div class="player-healthbar-small">
+			<div class="meter-wrap">
+				<div class="meter-value health" style="width: 88%;">
+					<div class="meter-text"></div>
+				</div>
+			</div>
+		</div>	
+		<div class="player-image">
+			<img src="img/player1.png" width="70px" class="img-polaroid">
+		</div>
+		<div class="player-name-small">
+			Wintermute
+		</div>
+	</div>
+	
+	<div class="player-container-small" id="player-1">
+		<div class="player-healthbar-small">
+			<div class="meter-wrap">
+				<div class="meter-value health" style="width: 88%;">
+					<div class="meter-text"></div>
+				</div>
+			</div>
+		</div>	
+		<div class="player-image">
+			<img src="img/player2.png" width="70px" class="img-polaroid">
+		</div>
+		<div class="player-name-small">
+			Wintermute
+		</div>
+	</div>
+	
+	<div class="player-container-small" id="player-1">
+		<div class="player-healthbar-small">
+			<div class="meter-wrap">
+				<div class="meter-value health" style="width: 88%;">
+					<div class="meter-text"></div>
+				</div>
+			</div>
+		</div>	
+		<div class="player-image">
+			<img src="img/player1.png" width="70px" class="img-polaroid">
+		</div>
+		<div class="player-name-small">
+			Wintermute
+		</div>
+	</div>
+	
+	<div class="player-container-small" id="player-1">
+		<div class="player-healthbar-small">
+			<div class="meter-wrap">
+				<div class="meter-value health" style="width: 88%;">
+					<div class="meter-text"></div>
+				</div>
+			</div>
+		</div>	
+		<div class="player-image">
+			<img src="img/player1.png" width="70px" class="img-polaroid">
+		</div>
+		<div class="player-name-small">
+			Wintermute
+		</div>
+	</div>
+	
+
+	<script src="js/jquery-2.0.1.js"></script>
+	<script src="js/jquery-ui-1.10.3.custom.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
 </html>
